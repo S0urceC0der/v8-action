@@ -7,8 +7,9 @@
 name: BUILD v8
 
 on:
-  push:
-    branches: [ master ]
+  workflow_dispatch
+  # push:
+  #  branches: [ master ]
   # watch:
   #   types: started
 
