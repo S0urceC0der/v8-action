@@ -4,7 +4,7 @@
 #===================================================
 
 
-name: BUILD v8
+name: Mac Build V8
 
 on:
   workflow_dispatch
