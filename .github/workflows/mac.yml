@@ -62,6 +62,7 @@ jobs:
       run: |
         source ~/.bash_profile
         gclient sync -f
+        cd v8
         tools/dev/v8gen.py x64.debug
         ninja -C out.gn/x64.debug d8
 
