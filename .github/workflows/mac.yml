@@ -14,7 +14,7 @@ on:
   #   types: started
 
 env:
-  PATCH_FLAG: false
+  PATCH_FLAG: true
   COMMIT: 568979f4d891bafec875fab20f608ff9392f4f29
   DEPOT_UPLOAD: false
   SRC_UPLOAD: true
@@ -35,7 +35,7 @@ jobs:
     - name: init env
       run: |
         /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
-        brew install curl wget git p7zip xz subversion
+        brew install ninja
     
     # get depot_tools
     - name: depot_tools
@@ -62,7 +62,9 @@ jobs:
       run: |
         source ~/.bash_profile
         gclient sync -f
-    
+        tools/dev/v8gen.py x64.debug
+        ninja -C out.gn/x64.debug d8
+
     # compress this file
     - name: zip depot_tools
       if: env.DEPOT_UPLOAD == 'true' && !cancelled()
