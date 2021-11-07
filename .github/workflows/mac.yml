@@ -63,7 +63,7 @@ jobs:
         source ~/.bash_profile
         gclient sync -f
         cd v8
-        tools/dev/v8gen.py x64.debug
+        tools/dev/v8gen.py x64.debug -vv
         ninja -C out.gn/x64.debug d8
 
     # compress this file
