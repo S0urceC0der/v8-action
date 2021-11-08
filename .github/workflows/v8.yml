@@ -24,7 +24,8 @@ env:
 jobs:
   build:
     # The type of runner that the job will run on
-    runs-on: ubuntu-18.04
+    runs-on: ubuntu-20.04
+    # runs-on: ubuntu-18.04
     
     steps:
     - name: Checkout
@@ -70,6 +71,13 @@ jobs:
       if: env.DEPOT_UPLOAD == 'true' && !cancelled()
       run: |
         zip -q -r depot_tools.zip depot_tools
+        
+    - name: clean project
+      run: |
+        rm -rf v8/.git
+        rm -rf v8/third_party/catapult/.git
+        rm -rf v8/third_party/icu/.git
+        rm -rf v8/third_party/llvm-build
         
     # 7zip v8 src
     - name: 7zip v8_src
